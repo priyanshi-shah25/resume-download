@@ -202,6 +202,14 @@
         "documentation": {}
     },
     {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "TestDecodeStr",
         "kind": 6,
         "importPath": "tests.test_email_logic",

@@ -65,15 +65,13 @@ def process_inbox():
             subject = decode_str(msg["Subject"])
             sender = msg.get("From", "")
 
-            if not email_matches_keyword(msg, config.KEYWORD_FILTER):
+            keyword_match = email_matches_keyword(msg, config.KEYWORD_FILTER)
+            attachments = extract_attachments(msg, config.ALLOWED_EXTENSIONS)
+            if not keyword_match and not attachments:
                 mail.store(msg_id, "+FLAGS", "\\Seen")
                 continue
 
             print(f"Matched email from {sender}: {subject}")
-            attachments = extract_attachments(msg, config.ALLOWED_EXTENSIONS)
-
-            if not attachments:
-                print("  No matching attachments found.")
             for filename, payload in attachments:
                 path = save_attachment(filename, payload, config.SAVE_FOLDER)
                 print(f"  Saved: {path}")

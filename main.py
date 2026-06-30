@@ -1,15 +1,8 @@
-"""
-Run this script to check the inbox once:
-
-    python main.py
-
-Or run continuously, polling every config.POLL_INTERVAL_SECONDS:
-
-    python main.py --loop
-"""
 import sys
 import time
 
+from dotenv import load_dotenv
+load_dotenv()
 from imap_client import process_inbox
 import config
 
