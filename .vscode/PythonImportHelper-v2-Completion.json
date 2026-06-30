@@ -202,6 +202,15 @@
         "documentation": {}
     },
     {
+        "label": "platform",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "platform",
+        "description": "platform",
+        "detail": "platform",
+        "documentation": {}
+    },
+    {
         "label": "load_dotenv",
         "importPath": "dotenv",
         "description": "dotenv",
@@ -444,11 +453,20 @@
         "documentation": {}
     },
     {
+        "label": "send_notification",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def send_notification(title, message):\n    \"\"\"Send Windows desktop notification\"\"\"\n    if not NOTIFICATIONS_ENABLED:\n        return\n    try:\n        toaster.show_toast(\n            title=title,\n            msg=message,\n            duration=10,  # Show for 10 seconds\n            threaded=True",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
         "label": "main",
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def main():\n    loop_mode = \"--loop\" in sys.argv\n    if not loop_mode:\n        process_inbox()\n        return\n    print(f\"Polling every {config.POLL_INTERVAL_SECONDS} seconds. Press Ctrl+C to stop.\")\n    while True:\n        try:\n            process_inbox()\n        except Exception as e:",
+        "peekOfCode": "def main():\n    loop_mode = \"--loop\" in sys.argv\n    print(f\"🚀 Resume Downloader Started\")\n    print(f\"📧 Email: {config.EMAIL_ACCOUNT}\")\n    print(f\"💾 Saving to: {config.SAVE_FOLDER}\")\n    if not loop_mode:\n        # Single run\n        try:\n            process_inbox()\n            print(\"✅ Done!\")",
         "detail": "main",
         "documentation": {}
     }
