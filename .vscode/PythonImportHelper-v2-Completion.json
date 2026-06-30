@@ -1,0 +1,447 @@
+[
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "unittest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "unittest",
+        "description": "unittest",
+        "detail": "unittest",
+        "documentation": {}
+    },
+    {
+        "label": "EmailMessage",
+        "importPath": "email.message",
+        "description": "email.message",
+        "isExtraImport": true,
+        "detail": "email.message",
+        "documentation": {}
+    },
+    {
+        "label": "EmailMessage",
+        "importPath": "email.message",
+        "description": "email.message",
+        "isExtraImport": true,
+        "detail": "email.message",
+        "documentation": {}
+    },
+    {
+        "label": "Message",
+        "importPath": "email.message",
+        "description": "email.message",
+        "isExtraImport": true,
+        "detail": "email.message",
+        "documentation": {}
+    },
+    {
+        "label": "decode_str",
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "isExtraImport": true,
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "get_email_body",
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "isExtraImport": true,
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "email_matches_keyword",
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "isExtraImport": true,
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "is_allowed_attachment",
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "isExtraImport": true,
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "extract_attachments",
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "isExtraImport": true,
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "email_matches_keyword",
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "isExtraImport": true,
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "extract_attachments",
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "isExtraImport": true,
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "decode_str",
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "isExtraImport": true,
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "MagicMock",
+        "importPath": "unittest.mock",
+        "description": "unittest.mock",
+        "isExtraImport": true,
+        "detail": "unittest.mock",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "config",
+        "description": "config",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "imap_client",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "imap_client",
+        "description": "imap_client",
+        "detail": "imap_client",
+        "documentation": {}
+    },
+    {
+        "label": "process_inbox",
+        "importPath": "imap_client",
+        "description": "imap_client",
+        "isExtraImport": true,
+        "detail": "imap_client",
+        "documentation": {}
+    },
+    {
+        "label": "decode_header",
+        "importPath": "email.header",
+        "description": "email.header",
+        "isExtraImport": true,
+        "detail": "email.header",
+        "documentation": {}
+    },
+    {
+        "label": "email",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "email",
+        "description": "email",
+        "detail": "email",
+        "documentation": {}
+    },
+    {
+        "label": "imaplib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "imaplib",
+        "description": "imaplib",
+        "detail": "imaplib",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "TestDecodeStr",
+        "kind": 6,
+        "importPath": "tests.test_email_logic",
+        "description": "tests.test_email_logic",
+        "peekOfCode": "class TestDecodeStr(unittest.TestCase):\n    def test_plain_ascii(self):\n        self.assertEqual(decode_str(\"Hello\"), \"Hello\")\n    def test_empty_or_none(self):\n        self.assertEqual(decode_str(\"\"), \"\")\n        self.assertEqual(decode_str(None), \"\")\nclass TestGetEmailBody(unittest.TestCase):\n    def test_simple_body(self):\n        msg = make_email(subject=\"Hi\", body=\"Please find my resume attached.\")\n        self.assertIn(\"resume\", get_email_body(msg).lower())",
+        "detail": "tests.test_email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "TestGetEmailBody",
+        "kind": 6,
+        "importPath": "tests.test_email_logic",
+        "description": "tests.test_email_logic",
+        "peekOfCode": "class TestGetEmailBody(unittest.TestCase):\n    def test_simple_body(self):\n        msg = make_email(subject=\"Hi\", body=\"Please find my resume attached.\")\n        self.assertIn(\"resume\", get_email_body(msg).lower())\n    def test_empty_body(self):\n        msg = make_email(subject=\"Hi\", body=\"\")\n        self.assertEqual(get_email_body(msg).strip(), \"\")\nclass TestEmailMatchesKeyword(unittest.TestCase):\n    def test_keyword_in_subject(self):\n        msg = make_email(subject=\"My Resume\", body=\"See attached.\")",
+        "detail": "tests.test_email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "TestEmailMatchesKeyword",
+        "kind": 6,
+        "importPath": "tests.test_email_logic",
+        "description": "tests.test_email_logic",
+        "peekOfCode": "class TestEmailMatchesKeyword(unittest.TestCase):\n    def test_keyword_in_subject(self):\n        msg = make_email(subject=\"My Resume\", body=\"See attached.\")\n        self.assertTrue(email_matches_keyword(msg, \"resume\"))\n    def test_keyword_in_body_only(self):\n        msg = make_email(subject=\"Application\", body=\"I've attached my resume.\")\n        self.assertTrue(email_matches_keyword(msg, \"resume\"))\n    def test_keyword_case_insensitive(self):\n        msg = make_email(subject=\"RESUME for job\", body=\"\")\n        self.assertTrue(email_matches_keyword(msg, \"resume\"))",
+        "detail": "tests.test_email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "TestIsAllowedAttachment",
+        "kind": 6,
+        "importPath": "tests.test_email_logic",
+        "description": "tests.test_email_logic",
+        "peekOfCode": "class TestIsAllowedAttachment(unittest.TestCase):\n    ALLOWED = (\".pdf\", \".doc\", \".docx\")\n    def test_pdf_allowed(self):\n        self.assertTrue(is_allowed_attachment(\"resume.pdf\", self.ALLOWED))\n    def test_docx_allowed(self):\n        self.assertTrue(is_allowed_attachment(\"resume.DOCX\", self.ALLOWED))\n    def test_image_rejected(self):\n        self.assertFalse(is_allowed_attachment(\"photo.png\", self.ALLOWED))\n    def test_no_filename(self):\n        self.assertFalse(is_allowed_attachment(\"\", self.ALLOWED))",
+        "detail": "tests.test_email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "TestExtractAttachments",
+        "kind": 6,
+        "importPath": "tests.test_email_logic",
+        "description": "tests.test_email_logic",
+        "peekOfCode": "class TestExtractAttachments(unittest.TestCase):\n    ALLOWED = (\".pdf\", \".doc\", \".docx\")\n    def test_extracts_only_allowed_types(self):\n        msg = make_email(\n            subject=\"My Resume\",\n            body=\"See attached.\",\n            attachments=[\n                (\"resume.pdf\", b\"%PDF-1.4 fake pdf content\", \"application\", \"pdf\"),\n                (\"photo.png\", b\"fake png bytes\", \"image\", \"png\"),\n            ],",
+        "detail": "tests.test_email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "make_email",
+        "kind": 2,
+        "importPath": "tests.test_email_logic",
+        "description": "tests.test_email_logic",
+        "peekOfCode": "def make_email(subject=\"\", body=\"\", attachments=None):\n    \"\"\"Build a real EmailMessage with optional attachments for testing.\"\"\"\n    msg = EmailMessage()\n    msg[\"Subject\"] = subject\n    msg[\"From\"] = \"sender@example.com\"\n    msg.set_content(body)\n    for filename, content, maintype, subtype in (attachments or []):\n        msg.add_attachment(\n            content, maintype=maintype, subtype=subtype, filename=filename\n        )",
+        "detail": "tests.test_email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "TestSaveAttachment",
+        "kind": 6,
+        "importPath": "tests.test_imap_client",
+        "description": "tests.test_imap_client",
+        "peekOfCode": "class TestSaveAttachment(unittest.TestCase):\n    def setUp(self):\n        self.tmpdir = tempfile.mkdtemp()\n    def tearDown(self):\n        shutil.rmtree(self.tmpdir, ignore_errors=True)\n    def test_saves_file_to_folder(self):\n        path = imap_client.save_attachment(\"resume.pdf\", b\"fake pdf bytes\", self.tmpdir)\n        self.assertTrue(os.path.exists(path))\n        with open(path, \"rb\") as f:\n            self.assertEqual(f.read(), b\"fake pdf bytes\")",
+        "detail": "tests.test_imap_client",
+        "documentation": {}
+    },
+    {
+        "label": "TestProcessInbox",
+        "kind": 6,
+        "importPath": "tests.test_imap_client",
+        "description": "tests.test_imap_client",
+        "peekOfCode": "class TestProcessInbox(unittest.TestCase):\n    def setUp(self):\n        self.tmpdir = tempfile.mkdtemp()\n        # Point config at a temp folder + set required credentials so\n        # connect() doesn't raise.\n        self._orig_save_folder = config.SAVE_FOLDER\n        self._orig_account = config.EMAIL_ACCOUNT\n        self._orig_password = config.EMAIL_APP_PASSWORD\n        config.SAVE_FOLDER = self.tmpdir\n        config.EMAIL_ACCOUNT = \"test@example.com\"",
+        "detail": "tests.test_imap_client",
+        "documentation": {}
+    },
+    {
+        "label": "make_raw_email",
+        "kind": 2,
+        "importPath": "tests.test_imap_client",
+        "description": "tests.test_imap_client",
+        "peekOfCode": "def make_raw_email(subject, body, attachments=None):\n    msg = EmailMessage()\n    msg[\"Subject\"] = subject\n    msg[\"From\"] = \"candidate@example.com\"\n    msg.set_content(body)\n    for filename, content, maintype, subtype in (attachments or []):\n        msg.add_attachment(content, maintype=maintype, subtype=subtype, filename=filename)\n    return msg.as_bytes()\nclass TestSaveAttachment(unittest.TestCase):\n    def setUp(self):",
+        "detail": "tests.test_imap_client",
+        "documentation": {}
+    },
+    {
+        "label": "IMAP_SERVER",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "IMAP_SERVER = os.environ.get(\"IMAP_SERVER\", \"imap.gmail.com\")\nEMAIL_ACCOUNT = os.environ.get(\"EMAIL_ACCOUNT\", \"\")\nEMAIL_APP_PASSWORD = os.environ.get(\"EMAIL_APP_PASSWORD\", \"\")\nSAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\"KEYWORD_FILTER\", \"resume\").lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_ACCOUNT",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "EMAIL_ACCOUNT = os.environ.get(\"EMAIL_ACCOUNT\", \"\")\nEMAIL_APP_PASSWORD = os.environ.get(\"EMAIL_APP_PASSWORD\", \"\")\nSAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\"KEYWORD_FILTER\", \"resume\").lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_APP_PASSWORD",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "EMAIL_APP_PASSWORD = os.environ.get(\"EMAIL_APP_PASSWORD\", \"\")\nSAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\"KEYWORD_FILTER\", \"resume\").lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "SAVE_FOLDER",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "SAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\"KEYWORD_FILTER\", \"resume\").lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "KEYWORD_FILTER",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "KEYWORD_FILTER = os.environ.get(\"KEYWORD_FILTER\", \"resume\").lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_EXTENSIONS",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "ALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "POLL_INTERVAL_SECONDS",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "POLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "decode_str",
+        "kind": 2,
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "peekOfCode": "def decode_str(value: str) -> str:\n    \"\"\"Safely decode an email header value (subject, filename, etc.).\"\"\"\n    if not value:\n        return \"\"\n    decoded, encoding = decode_header(value)[0]\n    if isinstance(decoded, bytes):\n        decoded = decoded.decode(encoding or \"utf-8\", errors=\"ignore\")\n    return decoded\ndef get_email_body(msg: Message) -> str:\n    \"\"\"Extract plain-text body from an email message (handles multipart).\"\"\"",
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "get_email_body",
+        "kind": 2,
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "peekOfCode": "def get_email_body(msg: Message) -> str:\n    \"\"\"Extract plain-text body from an email message (handles multipart).\"\"\"\n    body = \"\"\n    if msg.is_multipart():\n        for part in msg.walk():\n            content_type = part.get_content_type()\n            content_disposition = str(part.get(\"Content-Disposition\") or \"\")\n            if content_type == \"text/plain\" and \"attachment\" not in content_disposition:\n                try:\n                    payload = part.get_payload(decode=True)",
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "email_matches_keyword",
+        "kind": 2,
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "peekOfCode": "def email_matches_keyword(msg: Message, keyword: str) -> bool:\n    \"\"\"True if `keyword` appears in the subject or body (case-insensitive).\"\"\"\n    subject = decode_str(msg[\"Subject\"]).lower()\n    body = get_email_body(msg).lower()\n    keyword = keyword.lower()\n    return keyword in subject or keyword in body\ndef is_allowed_attachment(filename: str, allowed_extensions: tuple) -> bool:\n    \"\"\"True if filename ends with one of the allowed extensions.\"\"\"\n    if not filename:\n        return False",
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "is_allowed_attachment",
+        "kind": 2,
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "peekOfCode": "def is_allowed_attachment(filename: str, allowed_extensions: tuple) -> bool:\n    \"\"\"True if filename ends with one of the allowed extensions.\"\"\"\n    if not filename:\n        return False\n    return filename.lower().endswith(tuple(ext.lower() for ext in allowed_extensions))\ndef extract_attachments(msg: Message, allowed_extensions: tuple):\n    \"\"\"\n    Return a list of (decoded_filename, raw_bytes) for every attachment in\n    `msg` whose filename matches `allowed_extensions`.\n    \"\"\"",
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "extract_attachments",
+        "kind": 2,
+        "importPath": "email_logic",
+        "description": "email_logic",
+        "peekOfCode": "def extract_attachments(msg: Message, allowed_extensions: tuple):\n    \"\"\"\n    Return a list of (decoded_filename, raw_bytes) for every attachment in\n    `msg` whose filename matches `allowed_extensions`.\n    \"\"\"\n    results = []\n    for part in msg.walk():\n        if part.get_content_maintype() == \"multipart\":\n            continue\n        if part.get(\"Content-Disposition\") is None:",
+        "detail": "email_logic",
+        "documentation": {}
+    },
+    {
+        "label": "connect",
+        "kind": 2,
+        "importPath": "imap_client",
+        "description": "imap_client",
+        "peekOfCode": "def connect():\n    \"\"\"Log in and select the inbox. Raises imaplib.IMAP4.error on failure.\"\"\"\n    if not config.EMAIL_ACCOUNT or not config.EMAIL_APP_PASSWORD:\n        raise RuntimeError(\n            \"EMAIL_ACCOUNT and EMAIL_APP_PASSWORD must be set as environment \"\n            \"variables (see config.py docstring).\"\n        )\n    mail = imaplib.IMAP4_SSL(config.IMAP_SERVER)\n    mail.login(config.EMAIL_ACCOUNT, config.EMAIL_APP_PASSWORD)\n    mail.select(\"inbox\")",
+        "detail": "imap_client",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_unseen_ids",
+        "kind": 2,
+        "importPath": "imap_client",
+        "description": "imap_client",
+        "peekOfCode": "def fetch_unseen_ids(mail):\n    status, messages = mail.search(None, \"UNSEEN\")\n    if status != \"OK\" or not messages[0]:\n        return []\n    return messages[0].split()\ndef fetch_message(mail, msg_id):\n    res, msg_data = mail.fetch(msg_id, \"(RFC822)\")\n    if res != \"OK\":\n        return None\n    for response_part in msg_data:",
+        "detail": "imap_client",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_message",
+        "kind": 2,
+        "importPath": "imap_client",
+        "description": "imap_client",
+        "peekOfCode": "def fetch_message(mail, msg_id):\n    res, msg_data = mail.fetch(msg_id, \"(RFC822)\")\n    if res != \"OK\":\n        return None\n    for response_part in msg_data:\n        if isinstance(response_part, tuple):\n            return email.message_from_bytes(response_part[1])\n    return None\ndef save_attachment(filename: str, payload: bytes, save_folder: str) -> str:\n    os.makedirs(save_folder, exist_ok=True)",
+        "detail": "imap_client",
+        "documentation": {}
+    },
+    {
+        "label": "save_attachment",
+        "kind": 2,
+        "importPath": "imap_client",
+        "description": "imap_client",
+        "peekOfCode": "def save_attachment(filename: str, payload: bytes, save_folder: str) -> str:\n    os.makedirs(save_folder, exist_ok=True)\n    filepath = os.path.join(save_folder, filename)\n    with open(filepath, \"wb\") as f:\n        f.write(payload)\n    return filepath\ndef process_inbox():\n    \"\"\"Main entry point: scan unread mail, save matching attachments.\"\"\"\n    mail = connect()\n    try:",
+        "detail": "imap_client",
+        "documentation": {}
+    },
+    {
+        "label": "process_inbox",
+        "kind": 2,
+        "importPath": "imap_client",
+        "description": "imap_client",
+        "peekOfCode": "def process_inbox():\n    \"\"\"Main entry point: scan unread mail, save matching attachments.\"\"\"\n    mail = connect()\n    try:\n        ids = fetch_unseen_ids(mail)\n        if not ids:\n            print(\"No unread emails.\")\n            return\n        for msg_id in ids:\n            msg = fetch_message(mail, msg_id)",
+        "detail": "imap_client",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    loop_mode = \"--loop\" in sys.argv\n    if not loop_mode:\n        process_inbox()\n        return\n    print(f\"Polling every {config.POLL_INTERVAL_SECONDS} seconds. Press Ctrl+C to stop.\")\n    while True:\n        try:\n            process_inbox()\n        except Exception as e:",
+        "detail": "main",
+        "documentation": {}
+    }
+]
