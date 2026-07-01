@@ -47,11 +47,18 @@ def get_email_body(msg: Message) -> str:
 
 
 def email_matches_keyword(msg: Message, keyword: str) -> bool:
-    """True if `keyword` appears in the subject or body (case-insensitive)."""
+    """True if any configured keyword/phrase appears in the subject or body."""
     subject = decode_str(msg["Subject"]).lower()
     body = get_email_body(msg).lower()
-    keyword = keyword.lower()
-    return keyword in subject or keyword in body
+
+    if not keyword:
+        return False
+
+    keywords = [part.strip().lower() for part in str(keyword).split(",") if part.strip()]
+    if not keywords:
+        return False
+
+    return any(k in subject or k in body for k in keywords)
 
 
 def is_allowed_attachment(filename: str, allowed_extensions: tuple) -> bool:

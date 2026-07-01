@@ -66,6 +66,10 @@ class TestEmailMatchesKeyword(unittest.TestCase):
         msg = make_email(subject="RESUME for job", body="")
         self.assertTrue(email_matches_keyword(msg, "resume"))
 
+    def test_multiple_keywords_with_phrases(self):
+        msg = make_email(subject="Job Application", body="I am interested in this role.")
+        self.assertTrue(email_matches_keyword(msg, "resume, job application, cv, this role"))
+
     def test_no_keyword_match(self):
         msg = make_email(subject="Meeting notes", body="See you at 3pm.")
         self.assertFalse(email_matches_keyword(msg, "resume"))

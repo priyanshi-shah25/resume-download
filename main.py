@@ -1,3 +1,5 @@
+import logging
+import os
 import sys
 import time
 import platform
@@ -39,6 +41,44 @@ def send_notification(title, message):
         pass  # Silent fail if notification doesn't work
 
 
+def configure_logging():
+    """Configure application logging to a file and console."""
+    os.makedirs(os.path.dirname(config.LOG_FILE) or ".", exist_ok=True)
+
+    logger = logging.getLogger("resume_downloader")
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+
+    for handler in logger.handlers[:]:
+        logger.removeHandler(handler)
+        handler.close()
+
+    formatter = logging.Formatter(
+        "%(asctime)s %(levelname)s %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
+
+    file_handler = logging.FileHandler(config.LOG_FILE)
+    file_handler.setLevel(logging.ERROR)
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(logging.INFO)
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
+
+    return logger
+
+
+LOGGER = configure_logging()
+
+
+def log_error(message: str):
+    """Log an error to the configured log file and console."""
+    LOGGER.error(message)
+
+
 def main():
     loop_mode = "--loop" in sys.argv
 
@@ -54,6 +94,7 @@ def main():
         except Exception as e:
             error_msg = str(e)
             print(f"❌ Error: {error_msg}")
+            log_error(error_msg)
             send_notification("Resume Downloader Error", error_msg)
         return
 
@@ -76,6 +117,7 @@ def main():
                 error_count += 1
                 error_msg = str(e)
                 print(f"❌ Error: {error_msg}")
+                log_error(error_msg)
                 
                 # Send notification
                 send_notification(
@@ -98,6 +140,7 @@ def main():
         print("\n\n👋 Stopped by user")
     except Exception as e:
         print(f"\n💥 Unexpected error: {e}")
+        log_error(str(e))
         send_notification("Resume Downloader Crashed", str(e)[:100])
 
 

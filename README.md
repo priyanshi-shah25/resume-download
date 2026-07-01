@@ -73,8 +73,9 @@ no real mailbox or network access is required.
 
 ## How matching works
 
-- An email matches if the keyword (`KEYWORD_FILTER`, default `"resume"`)
-  appears anywhere in the subject line or plain-text body, case-insensitive.
+- An email matches if any configured keyword or phrase (`KEYWORD_FILTER`,
+  default `"resume, job application, cv, this role"`) appears anywhere in
+  the subject line or plain-text body, case-insensitive.
 - Of the attachments on a matching email, only files ending in `.pdf`,
   `.doc`, or `.docx` are saved (configurable via `ALLOWED_EXTENSIONS` in
   `config.py`).

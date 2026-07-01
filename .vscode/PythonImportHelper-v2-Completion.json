@@ -167,6 +167,14 @@
         "documentation": {}
     },
     {
+        "label": "configure_logging",
+        "importPath": "main",
+        "description": "main",
+        "isExtraImport": true,
+        "detail": "main",
+        "documentation": {}
+    },
+    {
         "label": "decode_header",
         "importPath": "email.header",
         "description": "email.header",
@@ -190,6 +198,15 @@
         "importPath": "imaplib",
         "description": "imaplib",
         "detail": "imaplib",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
         "documentation": {}
     },
     {
@@ -300,11 +317,20 @@
         "documentation": {}
     },
     {
+        "label": "TestLogging",
+        "kind": 6,
+        "importPath": "tests.test_main",
+        "description": "tests.test_main",
+        "peekOfCode": "class TestLogging(unittest.TestCase):\n    def test_configure_logging_creates_log_file(self):\n        with tempfile.TemporaryDirectory() as tmpdir:\n            log_file = os.path.join(tmpdir, \"errors.log\")\n            original_log_file = getattr(config, \"LOG_FILE\", None)\n            config.LOG_FILE = log_file\n            try:\n                logger = configure_logging()\n                logger.error(\"test error message\")\n            finally:",
+        "detail": "tests.test_main",
+        "documentation": {}
+    },
+    {
         "label": "IMAP_SERVER",
         "kind": 5,
         "importPath": "config",
         "description": "config",
-        "peekOfCode": "IMAP_SERVER = os.environ.get(\"IMAP_SERVER\", \"imap.gmail.com\")\nEMAIL_ACCOUNT = os.environ.get(\"EMAIL_ACCOUNT\", \"\")\nEMAIL_APP_PASSWORD = os.environ.get(\"EMAIL_APP_PASSWORD\", \"\")\nSAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\"KEYWORD_FILTER\", \"resume\").lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "peekOfCode": "IMAP_SERVER = os.environ.get(\"IMAP_SERVER\", \"imap.gmail.com\")\nEMAIL_ACCOUNT = os.environ.get(\"EMAIL_ACCOUNT\", \"\")\nEMAIL_APP_PASSWORD = os.environ.get(\"EMAIL_APP_PASSWORD\", \"\")\nSAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\n    \"KEYWORD_FILTER\", \"resume, job application, interested, application, experience, hire, cv, interview, role, this role, job opportunity, opportunity\"\n).lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\nLOG_FILE = os.environ.get(\"LOG_FILE\", \"./errors.log\") #change file path\n# How often to poll, in seconds, when running in continuous (loop) mode.",
         "detail": "config",
         "documentation": {}
     },
@@ -313,7 +339,7 @@
         "kind": 5,
         "importPath": "config",
         "description": "config",
-        "peekOfCode": "EMAIL_ACCOUNT = os.environ.get(\"EMAIL_ACCOUNT\", \"\")\nEMAIL_APP_PASSWORD = os.environ.get(\"EMAIL_APP_PASSWORD\", \"\")\nSAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\"KEYWORD_FILTER\", \"resume\").lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "peekOfCode": "EMAIL_ACCOUNT = os.environ.get(\"EMAIL_ACCOUNT\", \"\")\nEMAIL_APP_PASSWORD = os.environ.get(\"EMAIL_APP_PASSWORD\", \"\")\nSAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\n    \"KEYWORD_FILTER\", \"resume, job application, interested, application, experience, hire, cv, interview, role, this role, job opportunity, opportunity\"\n).lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\nLOG_FILE = os.environ.get(\"LOG_FILE\", \"./errors.log\") #change file path\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
         "detail": "config",
         "documentation": {}
     },
@@ -322,7 +348,7 @@
         "kind": 5,
         "importPath": "config",
         "description": "config",
-        "peekOfCode": "EMAIL_APP_PASSWORD = os.environ.get(\"EMAIL_APP_PASSWORD\", \"\")\nSAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\"KEYWORD_FILTER\", \"resume\").lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "peekOfCode": "EMAIL_APP_PASSWORD = os.environ.get(\"EMAIL_APP_PASSWORD\", \"\")\nSAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\n    \"KEYWORD_FILTER\", \"resume, job application, interested, application, experience, hire, cv, interview, role, this role, job opportunity, opportunity\"\n).lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\nLOG_FILE = os.environ.get(\"LOG_FILE\", \"./errors.log\") #change file path\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
         "detail": "config",
         "documentation": {}
     },
@@ -331,7 +357,7 @@
         "kind": 5,
         "importPath": "config",
         "description": "config",
-        "peekOfCode": "SAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\"KEYWORD_FILTER\", \"resume\").lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "peekOfCode": "SAVE_FOLDER = os.environ.get(\"SAVE_FOLDER\", \"./Resumes\")\nKEYWORD_FILTER = os.environ.get(\n    \"KEYWORD_FILTER\", \"resume, job application, interested, application, experience, hire, cv, interview, role, this role, job opportunity, opportunity\"\n).lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\nLOG_FILE = os.environ.get(\"LOG_FILE\", \"./errors.log\") #change file path\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
         "detail": "config",
         "documentation": {}
     },
@@ -340,7 +366,7 @@
         "kind": 5,
         "importPath": "config",
         "description": "config",
-        "peekOfCode": "KEYWORD_FILTER = os.environ.get(\"KEYWORD_FILTER\", \"resume\").lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "peekOfCode": "KEYWORD_FILTER = os.environ.get(\n    \"KEYWORD_FILTER\", \"resume, job application, interested, application, experience, hire, cv, interview, role, this role, job opportunity, opportunity\"\n).lower()\nALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\nLOG_FILE = os.environ.get(\"LOG_FILE\", \"./errors.log\") #change file path\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
         "detail": "config",
         "documentation": {}
     },
@@ -349,7 +375,16 @@
         "kind": 5,
         "importPath": "config",
         "description": "config",
-        "peekOfCode": "ALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "peekOfCode": "ALLOWED_EXTENSIONS = (\".pdf\", \".doc\", \".docx\")\nLOG_FILE = os.environ.get(\"LOG_FILE\", \"./errors.log\") #change file path\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "LOG_FILE",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "LOG_FILE = os.environ.get(\"LOG_FILE\", \"./errors.log\") #change file path\n# How often to poll, in seconds, when running in continuous (loop) mode.\nPOLL_INTERVAL_SECONDS = int(os.environ.get(\"POLL_INTERVAL_SECONDS\", \"300\"))",
         "detail": "config",
         "documentation": {}
     },
@@ -385,7 +420,7 @@
         "kind": 2,
         "importPath": "email_logic",
         "description": "email_logic",
-        "peekOfCode": "def email_matches_keyword(msg: Message, keyword: str) -> bool:\n    \"\"\"True if `keyword` appears in the subject or body (case-insensitive).\"\"\"\n    subject = decode_str(msg[\"Subject\"]).lower()\n    body = get_email_body(msg).lower()\n    keyword = keyword.lower()\n    return keyword in subject or keyword in body\ndef is_allowed_attachment(filename: str, allowed_extensions: tuple) -> bool:\n    \"\"\"True if filename ends with one of the allowed extensions.\"\"\"\n    if not filename:\n        return False",
+        "peekOfCode": "def email_matches_keyword(msg: Message, keyword: str) -> bool:\n    \"\"\"True if any configured keyword/phrase appears in the subject or body.\"\"\"\n    subject = decode_str(msg[\"Subject\"]).lower()\n    body = get_email_body(msg).lower()\n    if not keyword:\n        return False\n    keywords = [part.strip().lower() for part in str(keyword).split(\",\") if part.strip()]\n    if not keywords:\n        return False\n    return any(k in subject or k in body for k in keywords)",
         "detail": "email_logic",
         "documentation": {}
     },
@@ -462,11 +497,38 @@
         "documentation": {}
     },
     {
+        "label": "configure_logging",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def configure_logging():\n    \"\"\"Configure application logging to a file and console.\"\"\"\n    os.makedirs(os.path.dirname(config.LOG_FILE) or \".\", exist_ok=True)\n    logger = logging.getLogger(\"resume_downloader\")\n    logger.setLevel(logging.INFO)\n    logger.propagate = False\n    for handler in logger.handlers[:]:\n        logger.removeHandler(handler)\n        handler.close()\n    formatter = logging.Formatter(",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "log_error",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def log_error(message: str):\n    \"\"\"Log an error to the configured log file and console.\"\"\"\n    LOGGER.error(message)\ndef main():\n    loop_mode = \"--loop\" in sys.argv\n    print(f\"🚀 Resume Downloader Started\")\n    print(f\"📧 Email: {config.EMAIL_ACCOUNT}\")\n    print(f\"💾 Saving to: {config.SAVE_FOLDER}\")\n    if not loop_mode:\n        # Single run",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
         "label": "main",
         "kind": 2,
         "importPath": "main",
         "description": "main",
         "peekOfCode": "def main():\n    loop_mode = \"--loop\" in sys.argv\n    print(f\"🚀 Resume Downloader Started\")\n    print(f\"📧 Email: {config.EMAIL_ACCOUNT}\")\n    print(f\"💾 Saving to: {config.SAVE_FOLDER}\")\n    if not loop_mode:\n        # Single run\n        try:\n            process_inbox()\n            print(\"✅ Done!\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "LOGGER = configure_logging()\ndef log_error(message: str):\n    \"\"\"Log an error to the configured log file and console.\"\"\"\n    LOGGER.error(message)\ndef main():\n    loop_mode = \"--loop\" in sys.argv\n    print(f\"🚀 Resume Downloader Started\")\n    print(f\"📧 Email: {config.EMAIL_ACCOUNT}\")\n    print(f\"💾 Saving to: {config.SAVE_FOLDER}\")\n    if not loop_mode:",
         "detail": "main",
         "documentation": {}
     }
