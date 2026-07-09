@@ -1,9 +1,3 @@
-"""
-Core, side-effect-free logic for parsing emails and deciding what to save.
-
-Keeping this logic separate from imaplib I/O (see imap_client.py) means it
-can be unit tested without a real mailbox or network connection.
-"""
 from email.header import decode_header
 from email.message import Message
 
@@ -46,8 +40,15 @@ def get_email_body(msg: Message) -> str:
     return body
 
 
-def email_matches_keyword(msg: Message, keyword: str) -> bool:
-    """True if any configured keyword/phrase appears in the subject or body."""
+def email_matches_keyword(msg: Message, keyword: str, attachment_filenames=None) -> bool:
+    """
+    True if any configured keyword/phrase appears in the subject, body,
+    or (if provided) any attachment filename.
+
+    attachment_filenames: optional list of decoded attachment filenames,
+    e.g. ["priyanshi_ResUMe.pdf"]. Matching is case-insensitive substring
+    matching, same as subject/body.
+    """
     subject = decode_str(msg["Subject"]).lower()
     body = get_email_body(msg).lower()
 
@@ -58,7 +59,15 @@ def email_matches_keyword(msg: Message, keyword: str) -> bool:
     if not keywords:
         return False
 
-    return any(k in subject or k in body for k in keywords)
+    if any(k in subject or k in body for k in keywords):
+        return True
+
+    if attachment_filenames:
+        filenames_lower = [f.lower() for f in attachment_filenames if f]
+        if any(k in fname for k in keywords for fname in filenames_lower):
+            return True
+
+    return False
 
 
 def is_allowed_attachment(filename: str, allowed_extensions: tuple) -> bool:

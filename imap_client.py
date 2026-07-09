@@ -1,7 +1,3 @@
-"""
-Thin IMAP I/O layer. Kept separate from email_logic.py so the parsing/
-filtering rules can be unit tested without a real network connection.
-"""
 import email
 import imaplib
 import os
@@ -31,7 +27,8 @@ def fetch_unseen_ids(mail):
 
 
 def fetch_message(mail, msg_id):
-    res, msg_data = mail.fetch(msg_id, "(RFC822)")
+    # BODY.PEEK[] fetches the message without the server auto-marking it \Seen.
+    res, msg_data = mail.fetch(msg_id, "(BODY.PEEK[])")
     if res != "OK":
         return None
     for response_part in msg_data:
@@ -49,7 +46,6 @@ def save_attachment(filename: str, payload: bytes, save_folder: str) -> str:
 
 
 def process_inbox():
-    """Main entry point: scan unread mail, save matching attachments."""
     mail = connect()
     try:
         ids = fetch_unseen_ids(mail)
@@ -65,11 +61,17 @@ def process_inbox():
             subject = decode_str(msg["Subject"])
             sender = msg.get("From", "")
 
-            keyword_match = email_matches_keyword(msg, config.KEYWORD_FILTER)
             attachments = extract_attachments(msg, config.ALLOWED_EXTENSIONS)
-            if not keyword_match and not attachments:
-                #mail.store(msg_id, "+FLAGS", "\\Seen")
-                continue
+            attachment_filenames = [filename for filename, _ in attachments]
+
+            # (e.g. "priyanshi_ResUMe.pdf" matches keyword "resume").
+            keyword_match = email_matches_keyword(
+                msg, config.KEYWORD_FILTER, attachment_filenames
+            )
+
+            # Require BOTH keyword match AND at least one attachment.
+            if not (keyword_match and attachments):
+                continue  
 
             print(f"Matched email from {sender}: {subject}")
             for filename, payload in attachments:

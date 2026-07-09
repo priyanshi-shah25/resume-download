@@ -420,7 +420,7 @@
         "kind": 2,
         "importPath": "email_logic",
         "description": "email_logic",
-        "peekOfCode": "def email_matches_keyword(msg: Message, keyword: str) -> bool:\n    \"\"\"True if any configured keyword/phrase appears in the subject or body.\"\"\"\n    subject = decode_str(msg[\"Subject\"]).lower()\n    body = get_email_body(msg).lower()\n    if not keyword:\n        return False\n    keywords = [part.strip().lower() for part in str(keyword).split(\",\") if part.strip()]\n    if not keywords:\n        return False\n    return any(k in subject or k in body for k in keywords)",
+        "peekOfCode": "def email_matches_keyword(msg: Message, keyword: str, attachment_filenames=None) -> bool:\n    \"\"\"\n    True if any configured keyword/phrase appears in the subject, body,\n    or (if provided) any attachment filename.\n    attachment_filenames: optional list of decoded attachment filenames,\n    e.g. [\"priyanshi_ResUMe.pdf\"]. Matching is case-insensitive substring\n    matching, same as subject/body.\n    \"\"\"\n    subject = decode_str(msg[\"Subject\"]).lower()\n    body = get_email_body(msg).lower()",
         "detail": "email_logic",
         "documentation": {}
     },
@@ -456,7 +456,7 @@
         "kind": 2,
         "importPath": "imap_client",
         "description": "imap_client",
-        "peekOfCode": "def fetch_unseen_ids(mail):\n    status, messages = mail.search(None, \"UNSEEN\")\n    if status != \"OK\" or not messages[0]:\n        return []\n    return messages[0].split()\ndef fetch_message(mail, msg_id):\n    res, msg_data = mail.fetch(msg_id, \"(RFC822)\")\n    if res != \"OK\":\n        return None\n    for response_part in msg_data:",
+        "peekOfCode": "def fetch_unseen_ids(mail):\n    status, messages = mail.search(None, \"UNSEEN\")\n    if status != \"OK\" or not messages[0]:\n        return []\n    return messages[0].split()\ndef fetch_message(mail, msg_id):\n    # BODY.PEEK[] fetches the message without the server auto-marking it \\Seen.\n    res, msg_data = mail.fetch(msg_id, \"(BODY.PEEK[])\")\n    if res != \"OK\":\n        return None",
         "detail": "imap_client",
         "documentation": {}
     },
@@ -465,7 +465,7 @@
         "kind": 2,
         "importPath": "imap_client",
         "description": "imap_client",
-        "peekOfCode": "def fetch_message(mail, msg_id):\n    res, msg_data = mail.fetch(msg_id, \"(RFC822)\")\n    if res != \"OK\":\n        return None\n    for response_part in msg_data:\n        if isinstance(response_part, tuple):\n            return email.message_from_bytes(response_part[1])\n    return None\ndef save_attachment(filename: str, payload: bytes, save_folder: str) -> str:\n    os.makedirs(save_folder, exist_ok=True)",
+        "peekOfCode": "def fetch_message(mail, msg_id):\n    # BODY.PEEK[] fetches the message without the server auto-marking it \\Seen.\n    res, msg_data = mail.fetch(msg_id, \"(BODY.PEEK[])\")\n    if res != \"OK\":\n        return None\n    for response_part in msg_data:\n        if isinstance(response_part, tuple):\n            return email.message_from_bytes(response_part[1])\n    return None\ndef save_attachment(filename: str, payload: bytes, save_folder: str) -> str:",
         "detail": "imap_client",
         "documentation": {}
     },
@@ -474,7 +474,7 @@
         "kind": 2,
         "importPath": "imap_client",
         "description": "imap_client",
-        "peekOfCode": "def save_attachment(filename: str, payload: bytes, save_folder: str) -> str:\n    os.makedirs(save_folder, exist_ok=True)\n    filepath = os.path.join(save_folder, filename)\n    with open(filepath, \"wb\") as f:\n        f.write(payload)\n    return filepath\ndef process_inbox():\n    \"\"\"Main entry point: scan unread mail, save matching attachments.\"\"\"\n    mail = connect()\n    try:",
+        "peekOfCode": "def save_attachment(filename: str, payload: bytes, save_folder: str) -> str:\n    os.makedirs(save_folder, exist_ok=True)\n    filepath = os.path.join(save_folder, filename)\n    with open(filepath, \"wb\") as f:\n        f.write(payload)\n    return filepath\ndef process_inbox():\n    mail = connect()\n    try:\n        ids = fetch_unseen_ids(mail)",
         "detail": "imap_client",
         "documentation": {}
     },
@@ -483,7 +483,7 @@
         "kind": 2,
         "importPath": "imap_client",
         "description": "imap_client",
-        "peekOfCode": "def process_inbox():\n    \"\"\"Main entry point: scan unread mail, save matching attachments.\"\"\"\n    mail = connect()\n    try:\n        ids = fetch_unseen_ids(mail)\n        if not ids:\n            print(\"No unread emails.\")\n            return\n        for msg_id in ids:\n            msg = fetch_message(mail, msg_id)",
+        "peekOfCode": "def process_inbox():\n    mail = connect()\n    try:\n        ids = fetch_unseen_ids(mail)\n        if not ids:\n            print(\"No unread emails.\")\n            return\n        for msg_id in ids:\n            msg = fetch_message(mail, msg_id)\n            if msg is None:",
         "detail": "imap_client",
         "documentation": {}
     },
