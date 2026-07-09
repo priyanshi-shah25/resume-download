@@ -105,7 +105,7 @@ class TestProcessInbox(unittest.TestCase):
 
         saved_files = os.listdir(self.tmpdir)
         self.assertIn("resume.pdf", saved_files)
-        # Email should be marked as read
+        # Keyword matched (subject) AND attachment present -> marked as read
         mock_mail.store.assert_called_with(b"0", "+FLAGS", "\\Seen")
 
     def test_non_matching_email_saves_nothing(self):
@@ -120,8 +120,9 @@ class TestProcessInbox(unittest.TestCase):
         imap_client.process_inbox()
 
         self.assertEqual(os.listdir(self.tmpdir), [])
-        # Still marked as read so it's not reprocessed forever
-        mock_mail.store.assert_called_with(b"0", "+FLAGS", "\\Seen")
+        # No keyword match anywhere (subject, body, or filename) -> left
+        # unread so it gets re-checked on the next run, not marked seen.
+        mock_mail.store.assert_not_called()
 
     def test_matching_email_with_disallowed_attachment_only(self):
         raw = make_raw_email(
@@ -135,6 +136,25 @@ class TestProcessInbox(unittest.TestCase):
         imap_client.process_inbox()
 
         self.assertEqual(os.listdir(self.tmpdir), [])
+        # Keyword matches (subject) but no allowed attachment -> AND rule
+        # fails, so nothing is saved and it's left unread.
+        mock_mail.store.assert_not_called()
+
+    def test_attachment_filename_keyword_match(self):
+        # Subject/body have no keyword, but the attachment filename does.
+        raw = make_raw_email(
+            subject="Hello",
+            body="Please find the file attached.",
+            attachments=[("priyanshi_ResUMe.pdf", b"%PDF fake", "application", "pdf")],
+        )
+        mock_mail = self._mock_mail([raw])
+        imap_client.connect = MagicMock(return_value=mock_mail)
+
+        imap_client.process_inbox()
+
+        saved_files = os.listdir(self.tmpdir)
+        self.assertIn("priyanshi_ResUMe.pdf", saved_files)
+        mock_mail.store.assert_called_with(b"0", "+FLAGS", "\\Seen")
 
 
 if __name__ == "__main__":
